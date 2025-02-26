@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
-import pickle
-import keras
+
 
 app = Flask(__name__)
 
