@@ -11,7 +11,7 @@ tokenizer = None
 def load_resources():
     global model, tokenizer
     if model is None:
-        model = keras.models.load_model("clickbait_lstm_model2.h5")
+        model = tf.keras.models.load_model("clickbait_lstm_model2.h5")
     if tokenizer is None:
         with open("tokenizer2.pkl", "rb") as file:
             tokenizer = pickle.load(file)
