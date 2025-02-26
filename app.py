@@ -4,14 +4,20 @@ import pickle
 
 app = Flask(__name__)
 
-# Load the trained model
-model = tf.keras.models.load_model("clickbait_lstm_model2.h5")
+# Load the trained model once
+model = None
+tokenizer = None
 
-# Load the tokenizer
-with open("tokenizer2.pkl", "rb") as file:
-    tokenizer = pickle.load(file)
+def load_resources():
+    global model, tokenizer
+    if model is None:
+        model = keras.models.load_model("clickbait_lstm_model2.h5")
+    if tokenizer is None:
+        with open("tokenizer2.pkl", "rb") as file:
+            tokenizer = pickle.load(file)
 
 def predict_clickbait(text):
+    load_resources()  # Ensure model and tokenizer are loaded
     return text
 
 @app.route("/predict", methods=["POST"])
