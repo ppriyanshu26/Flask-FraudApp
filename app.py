@@ -1,8 +1,15 @@
 from flask import Flask, request, jsonify
 import tensorflow as tf
+import pickle
 
 app = Flask(__name__)
 
+# Load the trained model
+model = tf.keras.models.load_model("clickbait_lstm_model2.h5")
+
+# Load the tokenizer
+with open("tokenizer2.pkl", "rb") as file:
+    tokenizer = pickle.load(file)
 
 def predict_clickbait(text):
     return text
